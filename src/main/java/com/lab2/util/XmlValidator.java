@@ -18,20 +18,15 @@ public final class XmlValidator {
     private XmlValidator() {
     }
 
-    public static boolean isValid(String xmlPath, String xsdPath) {
+    public static void validate(String xmlPath, String xsdPath) throws DeviceParseException {
         try {
             SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             Schema schema = factory.newSchema(new File(xsdPath));
             Validator validator = schema.newValidator();
             validator.validate(new StreamSource(new File(xmlPath)));
             logger.info("XML is valid: {}", xmlPath);
-            return true;
-        } catch (SAXException e) {
-            logger.error("XML is not valid: {} ({})", xmlPath, e.getMessage());
-            return false;
-        } catch (IOException e) {
-            logger.error("Cannot read file: {}", xmlPath, e);
-            return false;
+        } catch (SAXException | IOException e) {
+            throw new DeviceParseException("Validation failed: " + xmlPath + " (" + e.getMessage() + ")", e);
         }
     }
 }
