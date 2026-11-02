@@ -4,7 +4,7 @@ import com.lab2.model.Characteristics;
 import com.lab2.model.Device;
 import com.lab2.model.Group;
 import com.lab2.model.Port;
-import com.lab2.util.XmlTags
+import com.lab2.util.XmlTags;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

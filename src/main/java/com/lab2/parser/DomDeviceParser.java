@@ -38,6 +38,8 @@ public class DomDeviceParser implements DeviceParser {
             return devices;
         } catch (ParserConfigurationException | SAXException | IOException e) {
             throw new DeviceParseException("DOM: failed to parse " + xmlPath, e);
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            throw new DeviceParseException("DOM: invalid device data in " + xmlPath, e);
         }
     }
 

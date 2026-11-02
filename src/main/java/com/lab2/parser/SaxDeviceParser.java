@@ -33,6 +33,8 @@ public class SaxDeviceParser implements DeviceParser {
             return devices;
         } catch (ParserConfigurationException | SAXException | IOException e) {
             throw new DeviceParseException("SAX: failed to parse " + xmlPath, e);
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            throw new DeviceParseException("SAX: invalid device data in " + xmlPath, e);
         }
     }
 
@@ -67,4 +69,3 @@ public class SaxDeviceParser implements DeviceParser {
             }
         }
     }
-}
