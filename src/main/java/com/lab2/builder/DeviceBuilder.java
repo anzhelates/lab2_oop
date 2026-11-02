@@ -4,6 +4,7 @@ import com.lab2.model.Characteristics;
 import com.lab2.model.Device;
 import com.lab2.model.Group;
 import com.lab2.model.Port;
+import com.lab2.util.XmlTags
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -94,5 +95,21 @@ public class DeviceBuilder {
         if (value == null) {
             throw new IllegalStateException("Field is not set: " + field);
         }
+    }
+
+    public DeviceBuilder setField(String tag, String value) {
+        switch (tag) {
+            case XmlTags.NAME -> name(value);
+            case XmlTags.ORIGIN -> origin(value);
+            case XmlTags.PRICE -> price(new BigDecimal(value));
+            case XmlTags.CRITICAL -> critical(Boolean.parseBoolean(value));
+            case XmlTags.PERIPHERAL -> peripheral(Boolean.parseBoolean(value));
+            case XmlTags.POWER_CONSUMPTION -> powerConsumption(Integer.parseInt(value));
+            case XmlTags.COOLER -> cooler(Boolean.parseBoolean(value));
+            case XmlTags.GROUP -> group(Group.fromXml(value));
+            case XmlTags.PORT -> addPort(Port.fromXml(value));
+            default -> { }
+        }
+        return this;
     }
 }
