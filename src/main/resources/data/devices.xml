@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Devices xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="devices.xsd">
+
+    <Device id="dev-001">
+        <Name>Intel Core i5-12400</Name>
+        <Origin>USA</Origin>
+        <Price currency="UAH">8500</Price>
+        <Type>
+            <Peripheral>false</Peripheral>
+            <PowerConsumption>65</PowerConsumption>
+            <Cooler>true</Cooler>
+            <Group>IO</Group>
+            <Ports>
+                <Port>USB</Port>
+            </Ports>
+        </Type>
+        <Critical>true</Critical>
+    </Device>
+
+    <Device id="dev-002">
+        <Name>Logitech G102</Name>
+        <Origin>China</Origin>
+        <Price currency="UAH">749.50</Price>
+        <Type>
+            <Peripheral>true</Peripheral>
+            <PowerConsumption>2</PowerConsumption>
+            <Cooler>false</Cooler>
+            <Group>IO</Group>
+            <Ports>
+                <Port>USB</Port>
+            </Ports>
+        </Type>
+        <Critical>false</Critical>
+    </Device>
+
+    <Device id="dev-003">
+        <Name>Asus ROG Strix B550</Name>
+        <Origin>Taiwan</Origin>
+        <Price currency="UAH">6200</Price>
+        <Type>
+            <Peripheral>false</Peripheral>
+            <PowerConsumption>50</PowerConsumption>
+            <Cooler>true</Cooler>
+            <Group>IO</Group>
+            <Ports>
+                <Port>USB</Port>
+                <Port>COM</Port>
+                <Port>LPT</Port>
+            </Ports>
+        </Type>
+        <Critical>true</Critical>
+    </Device>
+
+    <Device id="dev-004">
+        <Name>Creative Sound Blaster Z</Name>
+        <Origin>Singapore</Origin>
+        <Price currency="UAH">3100</Price>
+        <Type>
+            <Peripheral>false</Peripheral>
+            <PowerConsumption>15</PowerConsumption>
+            <Cooler>false</Cooler>
+            <Group>Multimedia</Group>
+            <Ports>
+                <Port>USB</Port>
+            </Ports>
+        </Type>
+        <Critical>false</Critical>
+    </Device>
+
+    <Device id="dev-005">
+        <Name>Dell P2422H Monitor</Name>
+        <Origin>China</Origin>
+        <Price currency="UAH">7400</Price>
+        <Type>
+            <Peripheral>true</Peripheral>
+            <PowerConsumption>20</PowerConsumption>
+            <Cooler>false</Cooler>
+            <Group>Multimedia</Group>
+            <Ports>
+                <Port>USB</Port>
+                <Port>COM</Port>
+            </Ports>
+        </Type>
+        <Critical>false</Critical>
+    </Device>
+</Devices>

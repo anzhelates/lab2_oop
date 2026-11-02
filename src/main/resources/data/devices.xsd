@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <xs:element name="Devices">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Device" type="DeviceType" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="DeviceType">
+        <xs:sequence>
+            <xs:element name="Name" type="NonEmptyString"/>
+            <xs:element name="Origin" type="NonEmptyString"/>
+            <xs:element name="Price" type="PriceType"/>
+            <xs:element name="Type" type="CharacteristicsType"/>
+            <xs:element name="Critical" type="xs:boolean"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="DeviceId" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="CharacteristicsType">
+        <xs:sequence>
+            <xs:element name="Peripheral" type="xs:boolean"/>
+            <xs:element name="PowerConsumption" type="PowerType"/>
+            <xs:element name="Cooler" type="xs:boolean"/>
+            <xs:element name="Group" type="GroupType"/>
+            <xs:element name="Ports" type="PortsType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PortsType">
+        <xs:sequence>
+            <xs:element name="Port" type="PortType" minOccurs="1" maxOccurs="3"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PriceType">
+        <xs:simpleContent>
+            <xs:extension base="NonNegativeDecimal">
+                <xs:attribute name="currency" type="CurrencyType" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:simpleType name="DeviceId">
+        <xs:restriction base="xs:ID">
+            <xs:pattern value="dev-[0-9]{3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="NonEmptyString">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="100"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="NonNegativeDecimal">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PowerType">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="1500"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="CurrencyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="UAH"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="GroupType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="IO"/>
+            <xs:enumeration value="Multimedia"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PortType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="COM"/>
+            <xs:enumeration value="USB"/>
+            <xs:enumeration value="LPT"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
