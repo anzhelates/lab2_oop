@@ -5,7 +5,7 @@ import com.lab2.parser.DeviceParser;
 import com.lab2.parser.DomDeviceParser;
 import com.lab2.parser.SaxDeviceParser;
 import com.lab2.parser.StaxDeviceParser;
-import com.lab2.service.DeviceService;
+import com.lab2.loader.DeviceLoader;
 import com.lab2.util.DeviceComparators;
 import com.lab2.util.DeviceParseException;
 import com.lab2.util.XslTransformer;
@@ -33,7 +33,7 @@ public class Main {
             List<Device> reference = null;
             for (DeviceParser parser : parsers) {
                 String name = parser.getClass().getSimpleName();
-                List<Device> devices = new DeviceService(parser)
+                List<Device> devices = new DeviceLoader(parser)
                         .load(XML_PATH, XSD_PATH, DeviceComparators.BY_PRICE);
                 logger.info("{}: {} devices", name, devices.size());
 
