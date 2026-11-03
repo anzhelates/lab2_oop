@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Devices>
+    <Device id="dev-001">
+        <Name>Broken Device</Name>
+        <Origin>USA</Origin>
+        <Price currency="UAH">100</Price>
+        <Type>
+            <Peripheral>false</Peripheral>
+            <PowerConsumption>10</PowerConsumption>
+            <Cooler>false</Cooler>
+            <Group>IO</Group>
+            <Ports>
+                <Port>XYZ</Port>
+            </Ports>
+        </Type>
+        <Critical>false</Critical>
+    </Device>
+</Devices>
