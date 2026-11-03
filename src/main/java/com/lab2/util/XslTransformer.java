@@ -9,6 +9,9 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 public final class XslTransformer {
     private static final Logger logger = LogManager.getLogger(XslTransformer.class);
@@ -18,13 +21,12 @@ public final class XslTransformer {
 
     public static void transform(String xmlPath, String xslPath, String outputPath)
             throws DeviceParseException {
-        try {
+        try (OutputStream out = new FileOutputStream(outputPath)) {
             Transformer transformer = TransformerFactory.newInstance()
                     .newTransformer(new StreamSource(new File(xslPath)));
-            transformer.transform(new StreamSource(new File(xmlPath)),
-                    new StreamResult(new File(outputPath)));
+            transformer.transform(new StreamSource(new File(xmlPath)), new StreamResult(out));
             logger.info("XSL transformed {} -> {}", xmlPath, outputPath);
-        } catch (TransformerException e) {
+        } catch (TransformerException | IOException e) {
             throw new DeviceParseException("XSL: failed to transform " + xmlPath, e);
         }
     }

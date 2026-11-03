@@ -69,3 +69,4 @@ public class SaxDeviceParser implements DeviceParser {
             }
         }
     }
+}
