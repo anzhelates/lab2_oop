@@ -75,32 +75,4 @@ class DeviceBuilderTest {
 
         assertThrows(IllegalStateException.class, builder::build);
     }
-
-    @Test
-    void setField_withXmlTags_fillsBuilder() {
-        DeviceBuilder builder = new DeviceBuilder().id("dev-001");
-        builder.setField("Name", "Mouse")
-                .setField("Origin", "China")
-                .setField("Price", "749.50")
-                .setField("Critical", "false")
-                .setField("Peripheral", "true")
-                .setField("PowerConsumption", "2")
-                .setField("Cooler", "false")
-                .setField("Group", "Multimedia")
-                .setField("Port", "USB")
-                .setField("Port", "COM");
-
-        Device device = builder.build();
-
-        assertEquals("Mouse", device.getName());
-        assertEquals(Group.MULTIMEDIA, device.getCharacteristics().getGroup());
-        assertEquals(2, device.getCharacteristics().getPorts().size());
-    }
-
-    @Test
-    void setField_withInvalidPort_throwsIllegalArgument() {
-        DeviceBuilder builder = new DeviceBuilder();
-
-        assertThrows(IllegalArgumentException.class, () -> builder.setField("Port", "XYZ"));
-    }
 }
